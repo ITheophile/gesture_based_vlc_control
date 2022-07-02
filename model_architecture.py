@@ -1,6 +1,5 @@
 import torch.nn as nn
 import torch.nn.functional as F
-import os
 
 n_features = 42
 hidden_size = [32, 16]

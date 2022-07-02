@@ -2,9 +2,9 @@ import csv
 import cv2 as cv
 import numpy as np
 import torch
-# Running mode (normal or data logging)
 
 
+# Running mode (normal or data logging )
 def select_mode(key, mode):
     class_id = -1
     if 48 <= key <= 57:  # class_id
@@ -79,9 +79,14 @@ def pre_process_landmark(landmark_list):
 
 # prediction
 
-def predict(landmarks, model):
+def predict(landmarks, model, threshold=0.9):
 
     model.eval()
     with torch.no_grad():
         landmarks = torch.tensor(landmarks.reshape(1, -1), dtype=torch.float)
-    return torch.argmax(model(landmarks), dim=1).item()
+        class_probalilities = torch.exp(model(landmarks))
+        confidence, class_idx = torch.max(class_probalilities, dim=1)
+        if confidence >= threshold:
+            return confidence.item(), class_idx.item()
+        else:
+            return confidence.item(), 8

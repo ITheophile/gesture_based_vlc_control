@@ -9,8 +9,8 @@ def control_vlc(command, media):
     if command == 'Play':
         media.play()
 
-    # elif command == 'Pause':
-    #     media.pause()
+    elif command == 'Pause' and media.is_playing() == 1:
+        media.pause()
 
     elif command == 'Stop':
         media.stop()
