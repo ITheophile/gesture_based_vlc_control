@@ -22,3 +22,9 @@ def control_vlc(command, media):
     elif command == 'Volume_Down':
         current_vol = media.audio_get_volume()
         media.audio_set_volume(current_vol - 1)
+
+    # Second condition checks if the media is muted(1) or not(0)
+    elif command == 'Mute' and media.audio_get_mute() == 0:
+        media.audio_toggle_mute()
+    elif command == 'Unmute' and media.audio_get_mute() == 1:
+        media.audio_toggle_mute()
