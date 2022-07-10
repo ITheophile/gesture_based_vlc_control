@@ -11,7 +11,7 @@ width = 960
 height = 540
 
 # Camera setting
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(0)
 cap.set(cv.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, height)
 
@@ -73,10 +73,10 @@ while True:
             command = labels[idx]
 
             # pass command to vlc
-            control_vlc(command, media)
+            # control_vlc(command, media)
 
-            cv.putText(frame, f'COMMAND: {command} | {confidence*100 :.1f}%', (int(width*0.05), int(height*0.1)),
-                       cv.FONT_HERSHEY_COMPLEX, 1, (22, 69, 22), 3, cv.LINE_AA)
+            # cv.putText(frame, f'COMMAND: {command} | {confidence*100 :.1f}%', (int(width*0.05), int(height*0.1)),
+            #            cv.FONT_HERSHEY_COMPLEX, 1, (22, 69, 22), 3, cv.LINE_AA)
 
             # Write to the dataset file (if mode == 1)
             logging_csv(class_id, mode, preprocessed)
