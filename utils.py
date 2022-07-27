@@ -79,7 +79,7 @@ def pre_process_landmark(landmark_list):
 
 # prediction
 
-def predict(landmarks, model, threshold=0.9):
+def predict(landmarks, model, threshold=0.75):
 
     model.eval()
     with torch.no_grad():
@@ -89,4 +89,4 @@ def predict(landmarks, model, threshold=0.9):
         if confidence >= threshold:
             return confidence.item(), class_idx.item()
         else:
-            return confidence.item(), 8
+            return confidence.item(), 9
